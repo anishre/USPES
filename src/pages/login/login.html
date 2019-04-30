@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+      <img src="assets/imgs/USP_logo.jpg" width="40px" style="display:inline-block" height="80px" width="150px"/>
+    <ion-title>
+     Login
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list no-lines>
+    <ion-item  >
+      <ion-input  round type="text" placeholder="Username" name="username" #username></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-input type="password" placeholder="Password" name="password" #password></ion-input>
+    </ion-item>
+
+    <button ion-button round block (click)="signIn()">Sign In</button>
+    <button ion-button round outline block (click)="signUp()">Register</button>
+  
+  </ion-list>
+</ion-content>

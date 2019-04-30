@@ -1,0 +1,36 @@
+page-enroll-now {
+    .logo {
+        //position: center;
+        width: 100px;
+        length: 200px;
+        
+        //color: $primary-color;
+      }
+      body {
+        cursor: url('http://ionicframework.com/img/finger.png'), auto;
+    }
+    
+    .header .col {
+        background-color:lightgrey;
+    }
+    
+    .col {
+        border: solid 1px grey;
+        border-bottom-style: none;
+        border-right-style: none;
+        column-width: 70px;
+    }
+    
+    .col:last-child {
+        border-right: solid 1px grey;
+    }
+    
+    .row:last-child .col {
+        border-bottom: solid 1px grey;
+    }
+       
+    
+    }
+    
+
+

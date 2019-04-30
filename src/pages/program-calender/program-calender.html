@@ -1,0 +1,76 @@
+<ion-header>
+
+    <ion-navbar>
+      <img src="assets/imgs/USP_logo.jpg" width="40px" style="display:inline-block" height="80px" width="150px"/>
+      <ion-buttons end>
+        <button ion-button icon-only (click)="showFilters()">
+          <ion-icon name="funnel"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+  
+  
+    <ion-menu [content]="content1" side="left" id="filters-5">
+        Menu
+        <ion-item>
+          <button  ion-button (click)="hideFilters()">
+            Home
+          </button>
+        </ion-item>
+        <ion-item>
+            <button  ion-button (click)="CoursesPage()">
+              Program Audit
+            </button>
+          </ion-item>
+          <ion-item>
+              <button  ion-button (click)="EnrollNowPage()">
+                Enroll Now
+              </button>
+            </ion-item>
+            <ion-item>
+              <button  ion-button (click)="hideFilters()">
+                My Details
+              </button>
+            </ion-item>
+                <ion-item>
+                    <button  ion-button (click)="ProgramCalenderPage()">
+                      Program Calender
+                    </button>
+                  </ion-item>
+                  <ion-item>
+                    <button  ion-button (click)="ChangeProgramPage()">
+                      Apply for Change Program
+                    </button> 
+                  </ion-item>
+                  <ion-item>
+                    <button  ion-button (click)="RecheckPage()">
+                      Apply for Recheck of Grades
+                    </button>
+                  </ion-item>
+                  <ion-item>
+                    <button  ion-button (click)="GraduationApplicationPage()">
+                      Apply for Graduation
+                    </button>
+                  </ion-item>
+                  <ion-item>
+                <button  ion-button (click)="LoginPage()">
+                  Logout
+                </button>
+              </ion-item>
+      </ion-menu>
+  
+    <ion-content padding #content1>
+      <ion-item *ngFor = "let item of items">
+  
+      <h2> {{item.username}}  </h2>
+    </ion-item>
+<!-- 
+    <label class="myFakeUploadButton" for="writeCsvData">Upload</label>
+    <input type="file" id="myFileInput"> -->
+    
+    <button  ion-button (click)="CSVUpload()">
+        Upload CSV
+      </button>
+  </ion-content>
+  
