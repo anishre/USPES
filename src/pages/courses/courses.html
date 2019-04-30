@@ -7,38 +7,60 @@
 <ion-header>
 
   <ion-navbar>
-    <img src="assets/imgs/USP_logo.jpg" width="40px" style="display:inline-block" height="80px" width="150px"/>
-  </ion-navbar>  
-  <button class="button customBtn"  ion-button (click)="HomePage()">
-    Home
-  </button>
-  <button class="button customBtn"  ion-button (click)="hideFilters()">
-    Program Audit
-  </button>
-  <button class="button customBtn"  ion-button (click)="EnrollNowPage()"> 
-    Enroll Now
-  </button>
-  <button class="button customBtn"  ion-button (click)="PersonalDetailsPage()">
-    My Details
-  </button>
-  
-  <button class="button customBtn"  ion-button (click)="MyProgramPage()">
-    My Program
-  </button>
-  <button class="button customBtn"  ion-button (click)="ChangeProgramPage()">
-    Change Program
-  </button> 
-  <button class="button customBtn"  ion-button (click)="RecheckPage()">
-    Grade Recheck
-  </button>
-  <button class="button customBtn"  ion-button (click)="GraduationApplicationPage()">
-    Graduation
-  </button>
-  <button class="button customBtn"  ion-button (click)="LoginPage()">
-    Logout
-  </button>
+      <img src="assets/imgs/USP_logo.jpg" width="40px" style="display:inline-block" height="100px" width="180px"/>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="showFilters()">
+        <ion-icon name="funnel"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
 
 </ion-header>
+
+<ion-menu [content]="content4" side="right" id="filters-4">
+  Menu
+  <ion-item>
+    <button  ion-button (click)="HomePage()">
+      Home
+    </button>
+  </ion-item>
+  <ion-item> 
+      <button  ion-button (click)="hideFilters()">
+        Program Audit
+      </button>
+    </ion-item>
+    <ion-item>
+        <button  ion-button (click)="EnrollNowPage()">
+          Enroll Now
+        </button>
+      </ion-item>
+      <ion-item>
+        <button  ion-button (click)="PersonalDetailsPage()">
+          My Details
+        </button>
+      </ion-item>
+      <ion-item>
+        <button  ion-button (click)="ChangeProgramPage()">
+          Apply for Change Program
+        </button> 
+      </ion-item>
+      <ion-item>
+        <button  ion-button (click)="RecheckPage()">
+          Apply for Recheck of Grades
+        </button>
+      </ion-item>
+      <ion-item>
+        <button  ion-button (click)="GraduationApplicationPage()">
+          Apply for Graduation
+        </button>
+      </ion-item>
+      <ion-item>
+          <button  ion-button (click)="LoginPage()">
+            Logout
+          </button>
+        </ion-item>
+</ion-menu>
+
 <!--Pulls student specific course details and displays it-->
 <ion-content padding #content4>
 
@@ -58,12 +80,14 @@
     <div class="col">{{item.name}}</div>
 </div>
 <div class="row header" >
-    <div class="col">Course Status:</div> 
+    <div class="col">Course Status:</div>
     <div class="col">{{item.status}}</div>
   </div>
   <div class="row header" >
       <div class="col">Course grade:</div>
-      <div class="col">{{item.grade}} |  <a href="#" class="card-link" (click)="Recheck_grade(item.course,item.grade)">Recheck</a></div>
+      <div class="col">{{item.grade}} | <button  ion-button (click)="RecheckPage()">
+        Recheck
+      </button></div>
     </div>
 </div>
 </ion-content>

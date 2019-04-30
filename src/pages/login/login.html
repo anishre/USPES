@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-list no-lines class="login-box">
+  <ion-list no-lines>
     <ion-item  >
       <ion-input  round type="text" placeholder="Username" name="username" #username></ion-input>
     </ion-item>
@@ -17,7 +17,8 @@
       <ion-input type="password" placeholder="Password" name="password" #password></ion-input>
     </ion-item>
 
-    <button class ="button customBtn" ion-button round block (click)="signIn()">Sign In</button>
+    <button ion-button round block (click)="signIn()">Sign In</button>
+    <button ion-button round outline block (click)="signUp()">Register</button>
   
   </ion-list>
 </ion-content>

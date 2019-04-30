@@ -55,7 +55,7 @@ export class ProgramCalenderPage {
    * Csvuploads program calender page
    */
   CSVUpload(){
-    window.location.href='http://127.0.0.1:8080/csv/';
+    window.location.href='http://127.0.0.1/csv/';
   }
 
   /* writeCsvData() {

@@ -25,12 +25,10 @@ import { GraduationApplicationPage } from '../graduation-application/graduation-
 })
 export class RecheckPage {
   username: any;
-  items: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http, public loading: LoadingController, public menuCtrl: MenuController) {}
   ionViewDidEnter() {
     this.menuCtrl.enable(true, 'filters-10')
-    this.get_recheck();
   }
 
   /**
@@ -121,32 +119,5 @@ export class RecheckPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad RecheckPage');
   }
-  get_recheck(){
-    this.username = this.navParams.get('username');
-    var headers = new Headers();
-    headers.append("Accept", 'application/json');
-    headers.append('Content-Type', 'application/json');
-    let options = new RequestOptions({
-      headers: headers
-    });
 
-    let data = {
-    username: this.username
-    };
-    let loader = this.loading.create({
-      content: 'Processing please wait...',
-    });
-    loader.present().then(() => { 
-      this.http.post('http://127.0.0.1:8080/ionicphp/user_recheck.php', data, options)
-        .map(res => res.json())
-        .subscribe(res => {
-          
-          loader.dismiss()
-          this.items = res.server_response;
-          console.log(this.items); 
-        });
-    });
-  }
-
-  
 }

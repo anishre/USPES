@@ -137,7 +137,7 @@ export class PersonalDetailsPage {
     });
 
     loader.present().then(() => {
-      this.http.post('http://127.0.0.1:8080/ionicphp/users_details.php', data, options)
+      this.http.post('http://127.0.0.1/ionicphp/users_details.php', data, options)
         .map(res => res.json())
         .subscribe(res => {
 

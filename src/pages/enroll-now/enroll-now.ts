@@ -67,7 +67,7 @@ program_name:any;
       content: 'Processing please wait...',
     });
     loader.present().then(() => { 
-      this.http.post('http://127.0.0.1:8080/ionicphp/course.php', data, options)
+      this.http.post('http://127.0.0.1/ionicphp/course.php', data, options)
         .map(res => res.json())
         .subscribe(res => {
           
@@ -109,7 +109,7 @@ program_name:any;
     });
 
     loader.present().then(() => {
-      this.http.post('http://127.0.0.1:8080/ionicphp/course_register.php', data, options)//API call to register in courses
+      this.http.post('http://127.0.0.1/ionicphp/course_register.php', data, options)//API call to register in courses
         .map(res => res.json())
         .subscribe(res => {
 
