@@ -73,7 +73,10 @@ export class HomePage {
   }
 
   RecheckPage() {
-    this.navCtrl.push(RecheckPage);
+    let data = {
+      username: this.username
+    } 
+    this.navCtrl.push(RecheckPage,data);
   }
   
   GraduationApplicationPage() {

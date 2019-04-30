@@ -26,12 +26,11 @@ import 'rxjs/add/operator/map';
 })
 export class GraduationApplicationPage {
   username: any;
+  items:any;
+  no:any;
 
-  @ViewChild("appname") appname;
-  @ViewChild("program") program;
-  @ViewChild("yearjoined") yearjoined;
-  @ViewChild("options") options;
-  @ViewChild("options") reason;
+
+  @ViewChild("new_grade") new_grade;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private http: Http, public loading: LoadingController, public menuCtrl: MenuController) {}
   
@@ -40,6 +39,7 @@ export class GraduationApplicationPage {
    */
   ionViewDidEnter() {
     this.menuCtrl.enable(true, 'filters-8')
+    this.get_recheck();
   }
 
   /**
@@ -129,85 +129,47 @@ export class GraduationApplicationPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
   }
-  Submit(){
-    //// check to confirm the username, email, telephone and password fields are filled
-   
-     if(this.appname.value=="" ){
-   
-    let alert = this.alertCtrl.create({
-   
-    title:"ATTENTION",
-    subTitle:"Application name field is empty",
-    buttons: ['OK']
+  get_recheck(){
+    this.username = this.navParams.get('username');
+    var headers = new Headers();
+    headers.append("Accept", 'application/json');
+    headers.append('Content-Type', 'application/json');
+    let options = new RequestOptions({
+      headers: headers
     });
-   
-    alert.present();
-  } else
-  if(this.options.value==""){
 
-  let alert = this.alertCtrl.create({
-
-  title:"ATTENTION",
-  subTitle:"Options field is empty",
-  buttons: ['OK']
-  });
-
-    alert.present();
-       
-     } else
-    if(this.program.value==""){
-   
-    let alert = this.alertCtrl.create({
-   
-    title:"ATTENTION",
-    subTitle:"Program field is empty",
-    buttons: ['OK']
+    let data = {
+    username: this.username,
+  
+    };
+    let loader = this.loading.create({
+      content: 'Processing please wait...',
     });
-   
-    alert.present();
-    
-   }
-    else 
-     if(this.yearjoined.value=="" ){
-   
-    let alert = this.alertCtrl.create({
-   
-    title:"ATTENTION",
-    subTitle:"Year Joined field is empty",
-    buttons: ['OK']
+    loader.present().then(() => { 
+      this.http.post('http://127.0.0.1/ionicphp/admin_recheck.php', data, options)
+        .map(res => res.json())
+        .subscribe(res => {
+          
+          loader.dismiss()
+          this.items = res.server_response;
+          console.log(this.items); 
+        });
     });
-   
-    alert.present();
-
   }
-  else 
-   if(this.reason.value=="" ){
+ public Approved(course_code,username,no){{
  
-  let alert = this.alertCtrl.create({
- 
-  title:"ATTENTION",
-  subTitle:" Reason field is empty",
-  buttons: ['OK']
-  });
- 
-  alert.present();
-         
-   }
-    else 
-    {
+  (this.items).splice(no, 1);
+
    var headers = new Headers();
        headers.append("Accept", 'application/json');
        headers.append('Content-Type', 'application/json' );
        let options = new RequestOptions({ headers: headers });
    
      let data = {
-        username: this.navParams.get('username'),
-        appname: this.appname.value,
-        program: this.program.value,
-        yearjoined: this.yearjoined.value, 
-        options: this.options.value,
-        reason: this.reason.value,
-         };
+      new_grade: this.new_grade.value,
+      username,
+      course_code
+     };
    
    
     let loader = this.loading.create({
@@ -215,12 +177,12 @@ export class GraduationApplicationPage {
      });
    
     loader.present().then(() => {
-   this.http.post('http://127.0.0.1/ionicphp/insert_data.php',data, options)
+   this.http.post('http://127.0.0.1/ionicphp/grade_update.php',data, options)
    .map(res => res.json())
    .subscribe(res => {
    
     loader.dismiss()
-   if(res=="Application Submitted"){
+   if(res=="Updated successfull"){
      let alert = this.alertCtrl.create({
        title:"CONGRATS",
        subTitle:(res),
@@ -228,7 +190,7 @@ export class GraduationApplicationPage {
        });
       
        alert.present();
-    this.navCtrl.push(GraduationApplicationPage);
+    //this.navCtrl.push(RecheckPage);
    
    }else
    {
@@ -244,4 +206,52 @@ export class GraduationApplicationPage {
    });
     }
   }
+  public Disapproved(course_code,username,grade,no){{
+    (this.items).splice(no, 1);
+    var headers = new Headers();
+        headers.append("Accept", 'application/json');
+        headers.append('Content-Type', 'application/json' );
+        let options = new RequestOptions({ headers: headers });
+    
+      let data = {
+       grade,
+       username,
+       course_code
+      };
+    
+    
+     let loader = this.loading.create({
+        content: 'Processing please wait...',
+      });
+    
+     loader.present().then(() => {
+    this.http.post('http://127.0.0.1/ionicphp/disaprove_grade.php',data, options)
+    .map(res => res.json())
+    .subscribe(res => {
+    
+     loader.dismiss()
+    if(res=="Updated successfull"){
+      let alert = this.alertCtrl.create({
+        title:"CONGRATS",
+        subTitle:(res),
+        buttons: ['OK']
+        });
+       
+        alert.present();
+     //this.navCtrl.push(RecheckPage);
+    
+    }else
+    {
+     let alert = this.alertCtrl.create({
+     title:"ERROR",
+     subTitle:(res),
+     buttons: ['OK']
+     });
+    
+     alert.present();
+      } 
+    });
+    });
+     }
+   }
 }

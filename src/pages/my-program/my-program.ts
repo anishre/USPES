@@ -162,7 +162,7 @@ export class MyProgramPage {
 
       type: 'doughnut',
       data: {
-          labels:this.var_x,
+          labels:this.var_x, 
           datasets: [{
               data: [10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10],
               backgroundColor: [

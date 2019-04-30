@@ -4,47 +4,32 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
+<<ion-header>
 
-  <ion-navbar>
-      <img src="assets/imgs/USP_logo.jpg" width="40px" style="display:inline-block" height="80px" width="150px"/>
-      <ion-buttons end>
-        <button ion-button icon-only (click)="showFilters()">
-          <ion-icon name="funnel"></ion-icon>
-        </button>
-      </ion-buttons>
-    </ion-navbar>
+  <ion-navbar> 
+    <img src="assets/imgs/USP_logo.jpg" width="40px" style="display:inline-block" height="80px" width="150px"/>
+  </ion-navbar>  
+    <button class="button customBtn"  ion-button (click)="hideFilters()">
+      Home
+    </button>
+    <button class="button customBtn"  ion-button (click)="ProgramCalenderPage()">
+      Program Calender
+    </button>
+    <button class="button customBtn"  ion-button (click)="ChangeProgramPage()">
+      Change Program
+    </button>
+    <button class="button customBtn"  ion-button (click)="RecheckPage()">
+      Graduation
+    </button>
+    <button class="button customBtn"  ion-button (click)="GraduationApplicationPage()">
+      Grade Recheck
+    </button>
+    <button class="button customBtn"  ion-button (click)="LoginPage()">
+      Logout
+    </button>
 
 </ion-header>
 
-<ion-menu [content]="content7" side="right" id="filters-7">
-    Menu
-        <ion-item>
-            <button  ion-button (click)="ProgramCalenderPage()">
-              Program Calender
-            </button>
-          </ion-item>
-          <ion-item>
-            <button  ion-button (click)="ChangeProgramPage()">
-              Applications for Change Program
-            </button> 
-          </ion-item>
-          <ion-item>
-            <button  ion-button (click)="RecheckPage()">
-              Applications for Recheck of Grades
-            </button>
-          </ion-item>
-          <ion-item>
-            <button  ion-button (click)="GraduationApplicationPage()">
-              Applications for Graduation
-            </button>
-          </ion-item>
-        <ion-item>
-            <button  ion-button (click)="LoginPage()">
-              Logout
-            </button>
-          </ion-item>
-  </ion-menu>
 <!--Calls CSVUpload function -->
 <ion-content padding #content7>
     <h2>Welcome to Admin Page </h2>

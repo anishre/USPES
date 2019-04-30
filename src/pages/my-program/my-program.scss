@@ -20,5 +20,14 @@ page-my-program {
         }
     
     }
-
+    
+    .button.customBtn{
+        width:128px;
+    }
+    .chart-container{
+        position: relative;
+        margin: auto;
+        height: 110vh;
+        width: 80vw;
+    }
 }

@@ -6,10 +6,13 @@ import { EnrollNowPage } from '../enroll-now/enroll-now';
 import { PersonalDetailsPage } from '../personal-details/personal-details';
 import { ChangeProgramPage } from '../change-program/change-program';
 import { RecheckPage } from '../recheck/recheck';
+
 import { GraduationApplicationPage } from '../graduation-application/graduation-application';
+
 import { LoginPage } from '../login/login';
 import { LoadingController } from 'ionic-angular';
 import 'rxjs/add/operator/map';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the CoursesPage page.
@@ -28,7 +31,7 @@ import 'rxjs/add/operator/map';
   templateUrl: 'courses.html',
 })
 export class CoursesPage {
-  items: any;
+items: any;
 username:any;
 program_name:any;
 
@@ -44,7 +47,6 @@ program_name:any;
    */
   constructor(public navCtrl: NavController,public alertCtrl: AlertController, public http:Http, public loading: LoadingController, public navParams: NavParams, public menuCtrl: MenuController) {
   this.enrollement();
-  
   }
   /**
    * Courses page
@@ -63,11 +65,6 @@ program_name:any;
   ChangeProgramPage() {
     this.navCtrl.push(ChangeProgramPage);
   }
-
-  RecheckPage() {
-    this.navCtrl.push(RecheckPage);
-  }
-  
   GraduationApplicationPage() {
     let data = {
       username: this.username
@@ -121,7 +118,9 @@ program_name:any;
   }
 
 
-
+  RecheckPage() {
+     this.navCtrl.push(RecheckPage);
+   }
   /**
    * Enrollements courses page
    */
@@ -155,4 +154,51 @@ program_name:any;
         });
     });
   }
+  public Recheck_grade(course,grade){
+    //assigns data to TS variables to enable student to register  
+     this.username = this.navParams.get('username');
+     var headers = new Headers();
+     headers.append("Accept", 'application/json');
+     headers.append('Content-Type', 'application/json');
+     let options = new RequestOptions({headers: headers});
+    
+
+     let data = {
+       username: this.username,
+       course,
+       grade
+     }
+ 
+     let loader = this.loading.create({
+      content: 'Processing please wait...',
+    });
+
+    loader.present().then(() => {
+      this.http.post('http://127.0.0.1/ionicphp/recheck_grade.php', data, options)//API call to register in courses
+      .map(res => res.json())
+      .subscribe(res => {
+        
+        loader.dismiss()
+          if(res=="Note:$50 will charged for grade recheck"){
+            let alert = this.alertCtrl.create({
+              title:"",
+              subTitle:(res),
+              buttons: ['OK']
+              });
+              alert.present();
+        //this.navCtrl.push(CoursesPage,data);
+        }else
+        {
+         let alert = this.alertCtrl.create({
+         title:"",
+         subTitle:(res),
+         buttons: ['OK']
+         });
+        
+         alert.present();
+          }       
+        });
+    });
+  }
+     
 }
