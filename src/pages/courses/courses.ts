@@ -144,7 +144,7 @@ program_name:any;
       content: 'Processing please wait...',
     });
     loader.present().then(() => { 
-      this.http.post('http://127.0.0.1/ionicphp/student_audit.php', data, options)//API call responsible for query
+      this.http.post('http://127.0.0.1:8080/ionicphp/student_audit.php', data, options)//API call responsible for query
         .map(res => res.json())
         .subscribe(res => {
           
@@ -174,7 +174,7 @@ program_name:any;
     });
 
     loader.present().then(() => {
-      this.http.post('http://127.0.0.1/ionicphp/recheck_grade.php', data, options)//API call to register in courses
+      this.http.post('http://127.0.0.1:8080/ionicphp/recheck_grade.php', data, options)//API call to register in courses
       .map(res => res.json())
       .subscribe(res => {
         

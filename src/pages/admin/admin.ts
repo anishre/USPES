@@ -39,7 +39,7 @@ export class AdminPage {
    */
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http, public loading: LoadingController, public menuCtrl: MenuController) {}
   CSVUpload(){
-    window.location.href='http://127.0.0.1/csv/';
+    window.location.href='http://127.0.0.1:8080/csv/';
   }
   
   /**

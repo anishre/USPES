@@ -153,7 +153,7 @@ export class ChangeProgramPage {
      });
    
     loader.present().then(() => {
-   this.http.post('http://127.0.0.1/ionicphp/course_change_insert.php',data, options)
+   this.http.post('http://127.0.0.1:8080/ionicphp/course_change_insert.php',data, options)
    .map(res => res.json())
    .subscribe(res => {
    

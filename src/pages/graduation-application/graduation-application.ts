@@ -146,7 +146,7 @@ export class GraduationApplicationPage {
       content: 'Processing please wait...',
     });
     loader.present().then(() => { 
-      this.http.post('http://127.0.0.1/ionicphp/admin_recheck.php', data, options)
+      this.http.post('http://127.0.0.1:8080/ionicphp/admin_recheck.php', data, options)
         .map(res => res.json())
         .subscribe(res => {
           
@@ -177,7 +177,7 @@ export class GraduationApplicationPage {
      });
    
     loader.present().then(() => {
-   this.http.post('http://127.0.0.1/ionicphp/grade_update.php',data, options)
+   this.http.post('http://127.0.0.1:8080/ionicphp/grade_update.php',data, options)
    .map(res => res.json())
    .subscribe(res => {
    
@@ -225,7 +225,7 @@ export class GraduationApplicationPage {
       });
     
      loader.present().then(() => {
-    this.http.post('http://127.0.0.1/ionicphp/disaprove_grade.php',data, options)
+    this.http.post('http://127.0.0.1:8080/ionicphp/disaprove_grade.php',data, options)
     .map(res => res.json())
     .subscribe(res => {
     

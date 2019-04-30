@@ -194,7 +194,7 @@ export class HomePage {
     });
 
     loader.present().then(() => {
-      this.http.post('http://127.0.0.1/ionicphp/fetch_data.php', data, options)
+      this.http.post('http://127.0.0.1:8080/ionicphp/fetch_data.php', data, options)
         .map(res => res.json())
         .subscribe(res => {
 

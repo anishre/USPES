@@ -144,7 +144,7 @@ export class MyProgramPage {
 
     loader.present().then(() => {
 
-    this.http.post('http://127.0.0.1/ionicphp/fetch_data_programs.php',data,options)
+    this.http.post('http://127.0.0.1:8080/ionicphp/fetch_data_programs.php',data,options)
 
     .map(res => res.json())
 
