@@ -19,8 +19,6 @@ or build your android/ios apps according to ionics documentation
 
 This is a fixed version of a tutorial I found on the internet that proved to be super annoying the code was posted with many issues and wrong formatting and and oh god
 
-I'm sure somebody is thankful I took care of it! :) 
-
 PS: 
 You can find the said tutorial here https://ionicdon.com/setup-login-register-ionic3-using-php-mysql but 
 I wouldn't suggesting following that to the letter as you will encounter from typos
